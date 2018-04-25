@@ -268,6 +268,12 @@ func (ipt *IPTables) NewChain(table, chain string) error {
 	return ipt.run("-t", table, "-N", chain)
 }
 
+// ClearTable flushed (deletes all rules) in the specified table.
+// If the chain does not exist, a new one will be created
+func (ipt *IPTables) ClearTable(table string) error {
+    return ipt.run("-t", table, "-F")
+}
+
 // ClearChain flushed (deletes all rules) in the specified table/chain.
 // If the chain does not exist, a new one will be created
 func (ipt *IPTables) ClearChain(table, chain string) error {
